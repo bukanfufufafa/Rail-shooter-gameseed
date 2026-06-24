@@ -8,6 +8,7 @@ public class cameracontroller : MonoBehaviour
     //public List<AnimationClip> Checkpoint;
     [SerializeField] private Animator animator;
     [SerializeField] private int checkpoint = 0;
+    public List<enemyTrigger> enemyTrigger;
     void Start()
     {
         
@@ -16,9 +17,12 @@ public class cameracontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (checkpoint >= enemyTrigger.Count)
+            return;
+
+        if (enemyTrigger[checkpoint].wipeOut)
         {
-            checkpoint += 1;
+            checkpoint++;
             move();
         }
     }
